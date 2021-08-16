@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-12">
                 <button @click="resetQuestions">Reinciar todas las preguntas</button>
+                <span style="font-weight: bold; margin-left: 20px;"> - {{ questions.length }}</span>
             </div>
         </div>
         <div class="row">

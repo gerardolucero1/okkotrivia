@@ -125,10 +125,10 @@
 
 <template>
     <div class="q-pa-md">
-        <div v-if="!start">
-            <button @click="startGame">COMENZAR</button>
+        <div class="q-mb-md">
+            <button @click="nextPlayer">Siguiente jugador</button>
         </div>
-        <div v-else>
+        <div>
             <div class="row">
                 <div class="col-4">
                     <q-card class="my-card" v-if="players.length != 0">
@@ -306,13 +306,13 @@ export default {
 
         counter(){
             if (this.counter == 0) {
-                this.modalQuestion = false
+                // this.modalQuestion = false
                 clearInterval(this.interval)
 
                 this.counter = 5
                 this.showCounter = false
 
-                this.nextPlayer()
+                // this.nextPlayer()
             }
         }
     },
@@ -336,6 +336,11 @@ export default {
 
                 this.updateUserScore()
                 this.updateQuestionStatus(question)
+
+                clearInterval(this.interval)
+
+                this.counter = 5
+                this.showCounter = false
             }else{
                 this.modalQuestion = false
                 this.error = true
@@ -345,6 +350,11 @@ export default {
                 }else{
                     this.playerIndex = 0
                 }
+
+                clearInterval(this.interval)
+
+                this.counter = 5
+                this.showCounter = false
 
                 this.getCategories()
                 this.updateQuestionStatus(question)
@@ -362,12 +372,18 @@ export default {
         },
 
         nextPlayer(){
+            clearInterval(this.interval)
+
+            this.counter = 5
+            this.showCounter = false
+
             this.modalQuestion = false
             if (this.playerIndex < (this.players.length - 1)) {
                 this.playerIndex++
             }else{
                 this.playerIndex = 0
             }
+            
 
             this.getCategories()
         },
@@ -378,7 +394,12 @@ export default {
                     return
                 }
 
-                
+                clearInterval(this.interval)
+
+                this.counter = 5
+                this.showCounter = false
+
+                this.modalQuestion = false
 
                 this.players[this.playerIndex].powerUp.pass = false
 
