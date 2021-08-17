@@ -26,7 +26,7 @@ const routes = [
     path: '/trivia',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/trivia/Index.vue') },
+      { path: '', component: () => import('pages/trivia/Trivia.vue') },
     ]
   },
 
